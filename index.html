@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <!-- Site Properties -->
+  <title>UNIX Calendar</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/reset.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/site.css">
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/container.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/grid.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/header.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/image.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/menu.css">
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/divider.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/dropdown.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/segment.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/button.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/list.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/icon.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/transition.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/statistic.css">
+
+  <style type="text/css">
+
+    .hidden.menu {
+      display: none;
+    }
+
+    .masthead.segment {
+      min-height: 700px;
+      padding: 1em 0em;
+    }
+    .masthead .logo.item img {
+      margin-right: 1em;
+    }
+    .masthead .ui.menu .ui.button {
+      margin-left: 0.5em;
+    }
+    .masthead .ui.header {
+      margin-top: 3em;
+      margin-bottom: 0em;
+    }
+
+    .masthead .ui.date-delim {
+        font-size: 3em; 
+        margin-top: 0.3em;
+    }
+    .masthead h2 {
+      font-size: 1.7em;
+      font-weight: normal;
+    }
+
+    .ui.vertical.stripe {
+      padding: 8em 0em;
+    }
+    .ui.vertical.stripe h3 {
+      font-size: 2em;
+    }
+    .ui.vertical.stripe .button + h3,
+    .ui.vertical.stripe p + h3 {
+      margin-top: 3em;
+    }
+    .ui.vertical.stripe .floated.image {
+      clear: both;
+    }
+    .ui.vertical.stripe p {
+      font-size: 1.33em;
+    }
+    .ui.vertical.stripe .horizontal.divider {
+      margin: 3em 0em;
+    }
+
+    .quote.stripe.segment {
+      padding: 0em;
+    }
+    .quote.stripe.segment .grid .column {
+      padding-top: 5em;
+      padding-bottom: 5em;
+    }
+
+    .footer.segment {
+      padding: 5em 0em;
+    }
+
+    .secondary.pointing.menu .toc.item {
+      display: none;
+    }
+
+    @media only screen and (max-width: 700px) {
+      .ui.fixed.menu {
+        display: none !important;
+      }
+      .secondary.pointing.menu .item,
+      .secondary.pointing.menu .menu {
+        display: none;
+      }
+      .secondary.pointing.menu .toc.item {
+        display: block;
+      }
+      .masthead.segment {
+        min-height: 350px;
+      }
+      .masthead h1.ui.header {
+        font-size: 2em;
+        margin-top: 1.5em;
+      }
+      .masthead h2 {
+        margin-top: 0.5em;
+        font-size: 1.5em;
+      }
+    }
+
+
+  </style>
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/visibility.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/transition.js"></script>
+  <script>
+
+  function setDateTime() 
+  {
+      var date = new Date();
+      var h = date.getHours();
+      var m = date.getMinutes(); 
+      var s = date.getSeconds(); 
+
+      var d = date.getDate();
+      var M = date.toLocaleString(navigator.language, { month: "short" });
+      var Y = date.getFullYear() - 1970;
+
+      $("#hour").text(h < 10 ? "0" + h : h);
+      $("#min").text(m < 10 ? "0" + m : m);
+      $("#sec").text(s < 10 ? "0" + s : s);
+
+      $("#date").text(d < 10 ? "0" + d : d);
+      $("#month").text(M);
+      $("#year").text(Y);
+      $("#timestamp").text(parseInt(date.getTime()/1000));
+  }
+
+  $(document)
+    .ready(function() {
+
+      // fix menu when passed
+      $('.masthead')
+        .visibility({
+          once: false,
+          onBottomPassed: function() {
+            $('.fixed.menu').transition('fade in');
+          },
+          onBottomPassedReverse: function() {
+            $('.fixed.menu').transition('fade out');
+          }
+        })
+      ;
+
+      // create sidebar and attach to menu open
+      $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+      ;
+
+      setInterval(setDateTime, 1000);
+
+    })
+  ;
+  </script>
+</head>
+<body>
+
+<!-- Following Menu -->
+<!--
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a class="active item">Home</a>
+    <a class="item">Work</a>
+    <a class="item">Company</a>
+    <a class="item">Careers</a>
+    <div class="right menu">
+      <div class="item">
+        <a class="ui button">Log in</a>
+      </div>
+      <div class="item">
+        <a class="ui primary button">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+<!-- Sidebar Menu -->
+<!--
+<div class="ui vertical inverted sidebar menu">
+  <a class="active item">Home</a>
+  <a class="item">Work</a>
+  <a class="item">Company</a>
+  <a class="item">Careers</a>
+  <a class="item">Login</a>
+  <a class="item">Signup</a>
+</div>
+-->
+
+
+<!-- Page Contents -->
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment">
+
+    <!--div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a class="active item">Home</a>
+        <a class="item">Work</a>
+        <a class="item">Company</a>
+        <a class="item">Careers</a>
+        <div class="right item">
+          <a class="ui inverted button">Log in</a>
+          <a class="ui inverted button">Sign Up</a>
+        </div>
+      </div>
+    </div-->
+
+  
+
+
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+        UNIX Calendar
+      </h1>
+
+      <div class="ui seven statistics inverted center aligned header">
+        <div class="ui statistic">
+          <div class="value">
+            &nbsp;
+          </div>
+        </div>
+        <div class="statistic">
+          <div class="value" id="hour">
+            00
+          </div>
+          <div class="label">
+            Hour
+          </div>
+        </div>
+        <div class="statistic">
+          <div class="value">
+            :
+          </div>
+        </div>
+        <div class="statistic">
+          <div class="value" id="min">
+            00
+          </div>
+          <div class="label">
+            Min
+          </div>
+        </div>
+        <div class="statistic">
+          <div class="value">
+            :
+          </div>
+        </div>
+        <div class="statistic">
+          <div class="value" id="sec">
+            00
+          </div>
+          <div class="label">
+            Sec
+          </div>
+        </div>
+        <div class="ui statistic">
+          <div class="value">
+            &nbsp;
+          </div>
+        </div>
+      </div> 
+
+       <div class="ui three statistics inverted center aligned">
+        <div class="ui large statistic">
+          <div class="value" id="date">
+            00
+          </div>
+          <div class="label">
+            Day
+          </div>
+        </div>
+
+        <div class="ui large statistic">
+          <div class="value" id="month">
+            ---
+          </div>
+          <div class="label">
+            Month
+          </div>
+        </div>
+        <div class="ui large teal inverted statistic">
+          <div class="value" id="year">
+            00
+          </div>
+          <div class="label">
+            Year
+          </div>
+        </div>
+      </div>
+
+      <div class="ui one statistics inverted center aligned header">
+        <div class="ui horizontal statistic">
+          <div class="label">
+            Time stamp&nbsp;&nbsp;
+          </div>
+          <div class="value" id="timestamp">
+            0000000000
+          </div>
+          <div class="label">
+            seconds
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script type="text/javascript">setDateTime();</script>
+  <div class="ui vertical stripe segment">
+    <div class="ui middle aligned stackable grid container">
+      <div class="row">
+        <div class="eight wide column">
+          <h3 class="ui header">Что это?</h3>
+          <p>Это грегорианский календарь, который берёт своё летоисчисление от начала отсчета <a href="https://en.wikipedia.org/wiki/Unix_time">UNIX-времени</a> (от 1 января 1970 года по гринвичу).</p>
+          <h3 class="ui header">Зачем это?</h3>
+          <p>С появлением UNIX систем и его UNIX-времени началась новая кибернетическая эра, уже без которой человечество не сможет полноценно сущестовать и развиваться. Каждый кто работал с вычислительной техникой, включая <b>телефоны</b>, не осозновая это работали в системах, которые ведут отсчет UNIX-времени. Так же отсчет ведется относительно точного некоторого события и является <b>религиозно независимым</b>, что делает новый календарь толерантным ко всем религиям и конфессиям.</p>
+        </div>
+        <div class="six wide right floated column">
+          <h3 class="ui header">Только год?</h3>
+          <p>Да, календарь меняет только год отсчета.</p>
+          <h3 class="ui header">Кто поддерживает?</h3>
+          <p>Пока никто. Это just-for-fun. Тем не менее в этом календаре есть смысл и будет прекрасно если он приживется.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <!--
+          <h4 class="ui inverted header">About</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Sitemap</a>
+            <a href="#" class="item">Contact Us</a>
+            <a href="#" class="item">Religious Ceremonies</a>
+            <a href="#" class="item">Gazebo Plans</a>
+          </div>
+        -->
+        </div>
+        <div class="three wide column">
+          <!--
+          <h4 class="ui inverted header">Services</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Banana Pre-Order</a>
+            <a href="#" class="item">DNA FAQ</a>
+            <a href="#" class="item">How To Access</a>
+            <a href="#" class="item">Favorite X-Men</a>
+          </div>
+          -->
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">Authors</h4>
+          <p><a href="https://github.com/bzick">Ivan Shalganov</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
