@@ -158,7 +158,7 @@
       var d = date.getDate();
       var M = date.toLocaleString(navigator.language, { month: "long" });
       var N = date.getMonth() + 1;
-      var Y = Math.abs(date.getFullYear() - 1970);
+      var Y = Math.abs(date.getFullYear() - 1970) + 1;
       var W = date.toLocaleString(navigator.language, { weekday: "long" });
       var ampm  = h >= 12 ? 'pm' : 'am';
       var ampm_h = h % 12;
