@@ -23,18 +23,21 @@ function setDateTime()
     var W = date.toLocaleString(navigator.language, { weekday: "long" });
     var ampm  = h >= 12 ? 'pm' : 'am';
     var ampm_h = h % 12;
-    ampm_h = ampm_h ? ampm_h : 12
+    ampm_h = ampm_h ? ampm_h : 12;
+    var time_offset = -date.getTimezoneOffset() / 60;
 
-    $("#hour").text(h < 10 ? "0" + h : h);
-    $("#hour_ampm").text((ampm_h < 10 ? "0" + ampm_h : ampm_h) + " " + ampm);
-    $("#min").text(m < 10 ? "0" + m : m);
-    $("#sec").text(s < 10 ? "0" + s : s);
 
-    $("#date").text(d < 10 ? "0" + d : d);
+    $("#hour").text(zerofil(h));
+    // $("#hour_ampm").text((ampm_h < 10 ? "0" + ampm_h : ampm_h) + " " + ampm);
+    $("#timezone").text((time_offset > 0 ? "+" + zerofil(time_offset) : zerofil(time_offset)) + " UTC");
+    $("#min").text(zerofil(m));
+    $("#sec").text(zerofil(s));
+
+    $("#date").text(zerofil(d));
     $("#weekday").text(W);
     $("#month").text(M);
-    $("#month-no").text(N < 10 ? "0" + N : N);
-    $("#year").text(Y < 10 ? "0" + Y : Y);
+    $("#month-no").text(zerofil(N));
+    $("#year").text(zerofil(Y));
     $("#timestamp").text(parseInt(date.getTime()/1000));
 
     updateCounters(".int", new Date(0x7FFFFFFF * 1000));
@@ -52,7 +55,11 @@ function setDateTime()
 }
 
 function zerofil(num) {
-    return num < 10 ? "0" + num : num;
+    if (num >= 0) {
+        return num < 10 ? "0" + num : num;
+    } else {
+        return num > -10 ? "-0" + Math.abs(num) : num;
+    }
 }
 
 function getCountDays(date)

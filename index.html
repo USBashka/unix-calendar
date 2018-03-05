@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <meta name="description" content="UNIX Calendar">
-  <meta name="keywords" content="Date,time,UNIX,calendar,gregorian,new era">
+  <meta name="keywords" content="Date,time,UNIX,calendar,gregorian,new era,timestamp,unix epoch">
 
   <!-- Site Properties -->
   <title>UNIX Calendar</title>
@@ -41,36 +41,22 @@
 <body>
 <a href="https://github.com/bzick/unix-calendar"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 1000" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
 <!-- Following Menu -->
-<!--
 <div class="ui large top fixed hidden menu">
   <div class="ui container">
-    <a class="active item">Home</a>
-    <a class="item">Work</a>
-    <a class="item">Company</a>
-    <a class="item">Careers</a>
-    <div class="right menu">
-      <div class="item">
-        <a class="ui button">Log in</a>
-      </div>
-      <div class="item">
-        <a class="ui primary button">Sign Up</a>
-      </div>
-    </div>
+    <a class="item" href="#calendar">UNIX Calendar</a>
+    <a class="item" href="#about">What is it?</a>
+    <a class="item" href="#counter">Overflow counters</a>
+    <a class="item" href="#converter">Calendar converter</a>
   </div>
 </div>
--->
 
 <!-- Sidebar Menu -->
-<!--
 <div class="ui vertical inverted sidebar menu">
-  <a class="active item">Home</a>
-  <a class="item">Work</a>
-  <a class="item">Company</a>
-  <a class="item">Careers</a>
-  <a class="item">Login</a>
-  <a class="item">Signup</a>
+  <a class="active item" href="#calendar">UNIX Calendar</a>
+  <a class="item" href="#about">What is it?</a>
+  <a class="item" href="#counter">Overflow counters</a>
+  <a class="item" href="#converter">Calendar converter</a>
 </div>
--->
 
 
 <!-- Page Contents -->
@@ -82,10 +68,10 @@
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
-        <a class="active item" href="#calendar">UNIX Calendar</a>
+        <a class="item" href="#calendar">UNIX Calendar</a>
         <a class="item" href="#about">What is it?</a>
         <a class="item" href="#counter">Overflow counters</a>
-        <a class="item" href="#convertor">Calendar convertor</a>
+        <a class="item" href="#converter">Calendar converter</a>
         <!--div class="right item">
           <a class="ui inverted button">Log in</a>
           <a class="ui inverted button">Sign Up</a>
@@ -97,8 +83,9 @@
 
 
     <div class="ui text container">
+      <a name="calendar" ></a>
       <h1 class="ui inverted">
-        UNIX Calendar <a name="calendar" ></a>
+        UNIX Calendar
       </h1>
 
       <div class="ui five statistics inverted header clock">
@@ -109,7 +96,7 @@
           <div class="value" id="hour">
             00
           </div>
-          <div class="label" id="hour_ampm">
+          <div class="label" id="timezone">
             --
           </div>
         </div>
@@ -224,9 +211,15 @@
   <!-- critical -->
   <div class="ui inverted vertical counters stripe segment dark-background">
     <a name="counter"></a>
+
     <div class="ui middle aligned stackable grid container">
       <div class="row">
         <div class="eight wide column">
+          <h3 class="ui inverted">Предел счетчиков</h3>
+          <p>Штам времени ведется целочисленными счетчиками. Как правило это 4-х байтовое знаковое число (int), 4-х байтовое беззнаковое число (unsigned int), 8-и байтовое знаковое число (long), 8-х байтовое беззнаковое число (unsigned long). И проблемы будут если счетчик достигнет своего верхнего предела.</p>
+          <p></p>
+        </div>
+        <div class="seven wide right floated column">
           <h3 class="ui inverted">До окончания <code>int</code></h3>
           <div class="ui tiny horizontal statistic inverted">
             <div class="value int years">
@@ -263,8 +256,6 @@
               --:--:--
             </div>
           </div>
-        </div>
-        <div class="seven wide right floated column">
           <h3 class="ui inverted">До окончания <code>long</code></h3>
           <div class="ui tiny horizontal statistic inverted">
             <div class="value long years">
