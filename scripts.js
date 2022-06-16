@@ -17,10 +17,10 @@ function setDateTime()
     var s = date.getSeconds();
 
     var d = date.getDate();
-    var M = date.toLocaleString(navigator.language, { month: "long" });
+    var M = date.toLocaleString("ru-RU", { month: "long" });
     var N = date.getMonth() + 1;
     var Y = Math.abs(date.getFullYear() - 1970);
-    var W = date.toLocaleString(navigator.language, { weekday: "long" });
+    var W = date.toLocaleString("ru-RU", { weekday: "long" });
     var ampm  = h >= 12 ? 'pm' : 'am';
     var ampm_h = h % 12;
     ampm_h = ampm_h ? ampm_h : 12;
