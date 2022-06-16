@@ -7,11 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <meta name="description" content="UNIX Calendar">
+  <meta name="description" content="Календарь UNIX эпохи">
   <meta name="keywords" content="Date,time,UNIX,calendar,gregorian,new era,timestamp,unix epoch">
 
   <!-- Site Properties -->
-  <title>UNIX Calendar</title>
+  <title>Календарь UNIX</title>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/reset.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/components/site.css">
 
@@ -43,19 +43,19 @@
 <!-- Following Menu -->
 <div class="ui large top fixed hidden menu">
   <div class="ui container">
-    <a class="item" href="#calendar">UNIX Calendar</a>
-    <a class="item" href="#about">What is it?</a>
-    <a class="item" href="#counter">Overflow counters</a>
-    <a class="item" href="#converter">Calendar converter</a>
+    <a class="item" href="#calendar">Календарь UNIX</a>
+    <a class="item" href="#about">Что это?</a>
+    <a class="item" href="#counter">Переполнение</a>
+    <a class="item" href="#converter">Конвертер</a>
   </div>
 </div>
 
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
-  <a class="active item" href="#calendar">UNIX Calendar</a>
-  <a class="item" href="#about">What is it?</a>
-  <a class="item" href="#counter">Overflow counters</a>
-  <a class="item" href="#converter">Calendar converter</a>
+  <a class="active item" href="#calendar">Календарь UNIX</a>
+  <a class="item" href="#about">Что это?</a>
+  <a class="item" href="#counter">Переполнение</a>
+  <a class="item" href="#converter">Конвертер</a>
 </div>
 
 
@@ -68,10 +68,10 @@
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
-        <a class="item" href="#calendar">UNIX Calendar</a>
-        <a class="item" href="#about">What is it?</a>
-        <a class="item" href="#counter">Overflow counters</a>
-        <a class="item" href="#converter">Calendar converter</a>
+        <a class="item" href="#calendar">Календарь UNIX</a>
+        <a class="item" href="#about">Что это?</a>
+        <a class="item" href="#counter">Переполнение</a>
+        <a class="item" href="#converter">Конвертер</a>
         <!--div class="right item">
           <a class="ui inverted button">Log in</a>
           <a class="ui inverted button">Sign Up</a>
@@ -85,7 +85,7 @@
     <div class="ui text container">
       <a name="calendar" ></a>
       <h1 class="ui inverted">
-        UNIX Calendar
+        Календарь UNIX
       </h1>
 
       <div class="ui five statistics inverted header clock">
@@ -194,15 +194,16 @@
       <div class="row">
         <div class="eight wide column">
           <h3 class="ui header">Что это?</h3>
-          <p>Это UNIX календарь на основе григорианского календаря, с началом летоисчисления от начала отсчета UNIX-времени (от 1 января 1970 года по гринвичу).</p>
+          <p>Это UNIX календарь на основе григорианского календаря, с началом летоисчисления от начала отсчёта UNIX-времени (от 1 января 1970 года по гринвичу).</p>
           <h3 class="ui header">Зачем это?</h3>
-          <p>С появлением UNIX систем и его UNIX-времени началась новая кибернетическая эра, уже без которой человечество не сможет полноценно существовать и развиваться. Каждый кто работал с вычислительной техникой, включая телефоны, не осознавая это, работали в системах, которые ведут отсчет UNIX-времени. Так же отсчет ведется относительно точного некоторого события и является религиозно независимым.</p>
+          <p>С появлением UNIX систем и его UNIX-времени началась новая кибернетическая эра, без которой человечество не сможет полноценно существовать и развиваться. Каждый кто работал с вычислительной техникой, включая телефоны, не осознавая это, работали в системах, которые ведут отсчёт UNIX-времени. Также отсчёт ведется относительно некоторого точного события и является религиозно независимым + имеет нулевой год, в отличие от Григорианского календаря, который упрощает вычисления и делает их интуитивно понятней.</p>
         </div>
         <div class="six wide right floated column">
           <h3 class="ui header">Только год?</h3>
           <p>Да, календарь меняет только год отсчета.</p>
           <h3 class="ui header">Кто поддерживает?</h3>
-          <p>Это just-for-fun проект. Тем не менее в этом календаре есть смысл и будет прекрасно если он приживется. Вопросы и предложения пишите <a href="https://github.com/bzick/unix-calendar/issues">тут</a>.</p>
+          <p>USBashka. В этом календаре есть смысл и будет прекрасно если он приживётся. Вопросы и предложения пишите <a href="https://github.com/USBashka/unix-calendar/issues">тут</a>.</p>
+          <p>Пример того, как может выглядеть использование такого календаря можно увидеть на <a href="https://svb.fandom.com/ru/wiki/%D0%A1%D0%B0%D0%BD%D1%91%D0%BA_%D0%B2_%D0%B1%D0%B8%D0%B4%D0%B5_%D0%B2%D0%B8%D0%BA%D0%B8">Санёк в биде вики</a>.</p>
         </div>
       </div>
     </div>
@@ -215,8 +216,8 @@
     <div class="ui middle aligned stackable grid container">
       <div class="row">
         <div class="eight wide column">
-          <h3 class="ui inverted">Предел счетчиков</h3>
-          <p>Штамп времени ведется целочисленными счетчиками. Как правило, это 4-х байтовое знаковое число (int), 4-х байтовое беззнаковое число (unsigned int), 8-и байтовое знаковое число (long), 8-х байтовое беззнаковое число (unsigned long). И проблемы будут если счетчик достигнет своего верхнего предела.</p>
+          <h3 class="ui inverted">Предел счётчиков</h3>
+          <p>Штамп времени ведется целочисленными счётчиками. Как правило, это 4-х байтовое знаковое число (int), 4-х байтовое беззнаковое число (unsigned int), 8-и байтовое знаковое число (long), 8-х байтовое беззнаковое число (unsigned long). И проблемы будут если счётчик достигнет своего верхнего предела.</p>
           <p></p>
         </div>
         <div class="seven wide right floated column">
